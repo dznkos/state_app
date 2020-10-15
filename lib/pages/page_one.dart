@@ -9,13 +9,29 @@ class PageOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final usuarioService = Provider.of<UsuarioServices>(context, listen: false);
+    final usuarioService = Provider.of<UsuarioServices>(context);
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Pagina 1'),
+        actions: [
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: GestureDetector(
+              onTap: (){
+                usuarioService.
+              },
+              child: Icon(
+                Icons.save,
+                size: 35,
+              ),
+            ),
+          )
+        ],
       ),
-      body: DatosPrincipal( usuarioService.usuario ),
+      body: usuarioService.existeUsuario
+            ? DatosPrincipal( usuarioService.usuario )
+            : Center(child: Text('No hay usuarios')),            
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.plus_one),
         onPressed: (){
@@ -36,6 +52,7 @@ class DatosPrincipal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       width: double.infinity,
       height: double.infinity,

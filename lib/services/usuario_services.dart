@@ -8,10 +8,15 @@ class UsuarioServices with ChangeNotifier {
 
   Usuario get usuario => this._usuario;
 
-  bool get existeUsuario => (this._usuario != null)? true : false;
+  bool get existeUsuario => (this._usuario != null) ? true : false;
 
-  set usuario (Usuario user ){
+  set usuario(Usuario user ){
     this._usuario = user;
+    notifyListeners();
+  }
+
+   set editarEdad(int newEdad ){
+    this._usuario.edad = newEdad;
     notifyListeners();
   }
 

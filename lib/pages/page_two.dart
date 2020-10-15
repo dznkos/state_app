@@ -20,14 +20,17 @@ class PageTwo extends StatelessWidget {
                 final usuarioService = Provider.of<UsuarioServices>(context, listen: false);
                 
                 final newuser = new Usuario(nombre: 'Tomas', edad: 31);
-                usuarioService.usuario = newuser;
-                
+                usuarioService.usuario = newuser;                
               },
               color: Colors.blue,
             ),
             MaterialButton(
               child: Text('Cambiar Edad', style: TextStyle(color: Colors.white)),
-              onPressed:(){},
+              onPressed:(){
+                final usuarioService = Provider.of<UsuarioServices>(context, listen: false);
+
+                usuarioService.editarEdad = 28;                
+              },
               color: Colors.blue,
             ),
             MaterialButton(
