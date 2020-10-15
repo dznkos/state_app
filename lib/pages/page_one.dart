@@ -30,6 +30,20 @@ class PageOne extends StatelessWidget {
                 size: 35,
               ),
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: GestureDetector(
+              onTap: (){
+                usuarioService.existeUsuario 
+                ? usuarioService.eliminarUsuario()
+                : null;
+              },
+              child: Icon(
+                Icons.delete_outline,
+                size: 35,
+              ),
+            ),
           )
         ],
       ),
