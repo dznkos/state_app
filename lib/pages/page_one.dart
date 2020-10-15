@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:estados_cubit/models/usuario.dart';
 import 'package:estados_cubit/services/usuario_services.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,9 @@ class PageOne extends StatelessWidget {
             padding: EdgeInsets.all(5),
             child: GestureDetector(
               onTap: (){
-                usuarioService.
+                usuarioService.existeUsuario 
+                ? usuarioService.editarNombre('Tomas Shelby')
+                : null;
               },
               child: Icon(
                 Icons.save,
@@ -53,6 +57,8 @@ class DatosPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final usuarioService = Provider.of<UsuarioServices>(context);
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -68,9 +74,10 @@ class DatosPrincipal extends StatelessWidget {
 
           Text('Professiones', style: TextStyle( fontSize: 15, fontWeight: FontWeight.bold) ),
 
-          ListTile( title: Text('Profesion 1: '), ),
-          ListTile( title: Text('Profesion 2: '), ),
-          ListTile( title: Text('Profesion 3: '), ),
+
+          ...usuarioService.usuario.profesiones.map(
+                  (profesion) => ListTile(title: Text(profesion),)).toList()
+          //ListTile( title: Text('Profesion 1: '), ),
         ],
       ),
     );

@@ -19,7 +19,11 @@ class PageTwo extends StatelessWidget {
               onPressed:(){
                 final usuarioService = Provider.of<UsuarioServices>(context, listen: false);
                 
-                final newuser = new Usuario(nombre: 'Tomas', edad: 31);
+                final newuser = new Usuario(
+                                      nombre: 'Tomas', 
+                                      edad: 31,
+                                      profesiones: ['Full Stack Developer', 'BackEnd Developer']
+                                    );
                 usuarioService.usuario = newuser;                
               },
               color: Colors.blue,
@@ -29,13 +33,17 @@ class PageTwo extends StatelessWidget {
               onPressed:(){
                 final usuarioService = Provider.of<UsuarioServices>(context, listen: false);
 
-                usuarioService.editarEdad = 28;                
+                usuarioService.editarEdad(28);                
               },
               color: Colors.blue,
             ),
             MaterialButton(
               child: Text('Agregar Profesion', style: TextStyle(color: Colors.white)),
-              onPressed:(){},
+              onPressed:(){
+                final usuarioService = Provider.of<UsuarioServices>(context, listen: false);
+
+                usuarioService.agregarProfesion();
+              },
               color: Colors.blue,
             ),
           ],
