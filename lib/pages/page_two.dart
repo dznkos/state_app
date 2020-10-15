@@ -1,4 +1,7 @@
+import 'package:estados_cubit/models/usuario.dart';
+import 'package:estados_cubit/services/usuario_services.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PageTwo extends StatelessWidget {
   @override
@@ -13,7 +16,13 @@ class PageTwo extends StatelessWidget {
           children: [
             MaterialButton(
               child: Text('Establecer Usuario', style: TextStyle(color: Colors.white)),
-              onPressed:(){},
+              onPressed:(){
+                final usuarioService = Provider.of<UsuarioServices>(context, listen: false);
+                
+                final newuser = new Usuario(nombre: 'Tomas', edad: 31);
+                usuarioService.usuario = newuser;
+                
+              },
               color: Colors.blue,
             ),
             MaterialButton(

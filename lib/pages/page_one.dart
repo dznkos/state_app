@@ -1,13 +1,21 @@
+import 'package:estados_cubit/models/usuario.dart';
+import 'package:estados_cubit/services/usuario_services.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PageOne extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
+
+    final usuarioService = Provider.of<UsuarioServices>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Pagina 1'),
       ),
-      body: DatosPrincipal(),
+      body: DatosPrincipal( usuarioService.usuario ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.plus_one),
         onPressed: (){
@@ -16,11 +24,16 @@ class PageOne extends StatelessWidget {
       ),
     );
   }
+
 }
 
 class DatosPrincipal extends StatelessWidget {
   
-  
+  final Usuario usuario;
+
+  const DatosPrincipal( this.usuario );
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,8 +46,8 @@ class DatosPrincipal extends StatelessWidget {
 
           Text('General', style: TextStyle( fontSize: 15, fontWeight: FontWeight.bold) ),
 
-          ListTile( title: Text('Nombre: '), ),
-          ListTile( title: Text('Edad: '), ),
+          ListTile( title: Text('Nombre: ${usuario.nombre}'), ),
+          ListTile( title: Text('Edad: ${usuario.edad}'), ),
 
           Text('Professiones', style: TextStyle( fontSize: 15, fontWeight: FontWeight.bold) ),
 
