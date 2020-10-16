@@ -9,5 +9,8 @@ class UsuarioCubit extends Cubit<UsuarioState> {
   UsuarioCubit() : super( UsuarioInitial() );
 
 
-
+  @override
+  String toString() {
+    return 'UsuarioInicial: existeUsuario: False';
+  }
 }
