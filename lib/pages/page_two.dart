@@ -1,3 +1,6 @@
+import 'package:estados_cubit/bloc/usuario/usuario_cubit.dart';
+import 'package:estados_cubit/models/usuario.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 class PageTwo extends StatelessWidget {
@@ -8,34 +11,41 @@ class PageTwo extends StatelessWidget {
         title: Text('Pagina 2'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MaterialButton(
-              child: Text('Establecer Usuario', style: TextStyle(color: Colors.white)),
-              onPressed:(){},
-              color: Colors.blue,
-            ),
-            MaterialButton(
-              child: Text('Cambiar Edad', style: TextStyle(color: Colors.white)),
-              onPressed:(){},
-              color: Colors.blue,
-            ),
-            MaterialButton(
-              child: Text('Agregar Profesion', style: TextStyle(color: Colors.white)),
-              onPressed:(){},
-              color: Colors.blue,
-            ),
-          ],
-        )
-      ),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MaterialButton(
+            child: Text('Establecer Usuario',
+                style: TextStyle(color: Colors.white)),
+            onPressed: () {
+              final newUser = Usuario(
+                  nombre: 'Vladimir Putin',
+                  edad: 41,
+                  profesiones: ['Cazador Osos', 'Inmortal']);
+
+              context.bloc<UsuarioCubit>().seleccionarUsuario(newUser);
+            },
+            color: Colors.blue,
+          ),
+          MaterialButton(
+            child: Text('Cambiar Edad', style: TextStyle(color: Colors.white)),
+            onPressed: () {},
+            color: Colors.blue,
+          ),
+          MaterialButton(
+            child: Text('Agregar Profesion',
+                style: TextStyle(color: Colors.white)),
+            onPressed: () {},
+            color: Colors.blue,
+          ),
+        ],
+      )),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.accessibility_new),
         onPressed: () {
           Navigator.pop(context);
-        }, 
+        },
       ),
     );
   }
 }
-
