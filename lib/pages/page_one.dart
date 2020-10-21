@@ -1,4 +1,5 @@
 import 'package:estados_cubit/bloc/usuario/usuario_cubit.dart';
+import 'package:estados_cubit/models/usuario.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,31 +10,33 @@ class PageOne extends StatelessWidget {
       appBar: AppBar(
         title: Text('Pagina 1'),
       ),
-      body: BlocBuilder<UsuarioCubit,UsuarioState>(
+      body: BlocBuilder<UsuarioCubit, UsuarioState>(
         builder: (_, state) {
-          print( state );
+          print(state);
 
-          if ( state is UsuarioInitial ){
+          if (state is UsuarioInitial) {
             return Center(child: Text('No hay informacion del usuario'));
-          }else {
-            return DatosPrincipal();
+          } else {
+            //context.bloc<UsuarioCubit>().
+            Usuario user;
+            return DatosPrincipal(user);
           }
-                    
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.plus_one),
-        onPressed: (){
-          Navigator.pushNamed(context, 'pagina2');
-        }
-      ),
+          child: Icon(Icons.plus_one),
+          onPressed: () {
+            Navigator.pushNamed(context, 'pagina2');
+          }),
     );
   }
 }
 
 class DatosPrincipal extends StatelessWidget {
-  
-  
+  final Usuario usuario;
+
+  const DatosPrincipal(this.usuario);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,17 +46,25 @@ class DatosPrincipal extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-          Text('General', style: TextStyle( fontSize: 15, fontWeight: FontWeight.bold) ),
-
-          ListTile( title: Text('Nombre: '), ),
-          ListTile( title: Text('Edad: '), ),
-
-          Text('Professiones', style: TextStyle( fontSize: 15, fontWeight: FontWeight.bold) ),
-
-          ListTile( title: Text('Profesion 1: '), ),
-          ListTile( title: Text('Profesion 2: '), ),
-          ListTile( title: Text('Profesion 3: '), ),
+          Text('General',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+          ListTile(
+            title: Text('Nombre: '),
+          ),
+          ListTile(
+            title: Text('Edad: '),
+          ),
+          Text('Professiones',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+          ListTile(
+            title: Text('Profesion 1: '),
+          ),
+          ListTile(
+            title: Text('Profesion 2: '),
+          ),
+          ListTile(
+            title: Text('Profesion 3: '),
+          ),
         ],
       ),
     );
